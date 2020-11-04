@@ -398,5 +398,8 @@
         When set to `true`, no views will receive the prompt asking to initialize
         Git in the current view's directory when not found.
      */
-    "disable_git_init_prompt": false
+    "disable_git_init_prompt": false,
+
+    /* log number in graph view */
+    "graph_log_max_count": 100
 }

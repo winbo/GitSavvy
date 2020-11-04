@@ -604,7 +604,10 @@ class gs_log_graph_refresh(TextCommand, GitCommand):
                 try:
                     tokens = run_or_timeout(lambda: wait_for_first_item(tokens), timeout=1.0)
                 except TimeoutError:
-                    try_kill_proc(current_proc)
+                    try:
+                        try_kill_proc(current_proc)
+                    except:
+                        pass
                     self.view.settings().set('git_savvy.log_graph_view.decoration', None)
                     enqueue_on_worker(self.view.run_command, "gs_log_graph_refresh")
                     return
@@ -802,6 +805,7 @@ class gs_log_graph_refresh(TextCommand, GitCommand):
         all_branches = settings.get("git_savvy.log_graph_view.all_branches")
         paths = settings.get("git_savvy.log_graph_view.paths", [])  # type: List[str]
         apply_filters = settings.get("git_savvy.log_graph_view.apply_filters")
+        max_count = settings.get("git_savvy.graph_log_max_count", 100)
         args = [
             'log',
             '--graph',
@@ -814,6 +818,7 @@ class gs_log_graph_refresh(TextCommand, GitCommand):
             '--author={}'.format(author) if author and apply_filters else None,
             '--decorate-refs-exclude=refs/remotes/origin/HEAD',  # cosmetics
             '--exclude=refs/stash',
+            '--max-count={}'.format(max_count),
             '--all' if all_branches else None,
         ]
 
