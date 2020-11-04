@@ -1,5 +1,18 @@
 [
 
+    /////////////////////////////////
+    // STATUS VIEW                 //
+    /////////////////////////////////
+
+    {
+        "keys": ["backspace"],
+        "command": "close",
+        "context": [
+            { "key": "setting.command_mode", "operator": "equal", "operand": false },
+            { "key": "setting.git_savvy.status_view", "operator": "equal", "operand": true }
+        ]
+    },
+
     /////////////////
     // COMMIT VIEW //
     /////////////////
@@ -64,6 +77,94 @@
         ]
     },
 
+    {
+        "keys": ["backspace"],
+        "command": "close",
+        "context": [
+            { "key": "setting.command_mode", "operator": "equal", "operand": false },
+            { "key": "setting.git_savvy.diff_view", "operator": "equal", "operand": true },
+        ]
+    },
+ 
+    {
+        "keys": ["e"],
+        "command": "gs_custom",
+        "args": {
+            "output_to_panel": false,
+            "args": ["difftool", "-y", "{FILE_PATH}"],
+            "start_msg": "Starting external diff tool..."
+        },
+        "context": [
+            { "key": "setting.command_mode", "operator": "equal", "operand": false },
+            { "key": "setting.git_savvy.diff_view", "operator": "equal", "operand": true },
+        ]
+    },
+
+    //////////////////////
+    // SHOW COMMIT VIEW //
+    //////////////////////
+
+    {
+        "keys": ["backspace"],
+        "command": "close",
+        "context": [
+            { "key": "setting.command_mode", "operator": "equal", "operand": false },
+            { "key": "setting.git_savvy.show_commit_view", "operator": "equal", "operand": true }
+        ]
+    },
+ 
+     ////////////////
+    // BLAME VIEW //
+    ////////////////
+    
+    {
+        "keys": ["backspace"],
+        "command": "close",
+        "context": [
+            { "key": "setting.command_mode", "operator": "equal", "operand": false },
+            { "key": "setting.git_savvy.blame_view", "operator": "equal", "operand": true }
+        ]
+    },
+
+    ///////////////
+    // TAGS VIEW //
+    ///////////////
+
+    {
+        "keys": ["backspace"],
+        "command": "close",
+        "context": [
+            { "key": "setting.command_mode", "operator": "equal", "operand": false },
+            { "key": "setting.git_savvy.tags_view", "operator": "equal", "operand": true }
+        ]
+    },
+
+    ///////////////////
+    // BRANCHES VIEW //
+    ///////////////////
+
+    {
+        "keys": ["backspace"],
+        "command": "close",
+        "context": [
+            { "key": "setting.command_mode", "operator": "equal", "operand": false },
+            { "key": "setting.git_savvy.branch_view", "operator": "equal", "operand": true }
+        ]
+    },
+
+    ////////////////
+    // GRAPH VIEW //
+    ////////////////
+
+    {
+        "keys": ["backspace"],
+        "command": "close",
+        "context": [
+            { "key": "setting.command_mode", "operator": "equal", "operand": false },
+            { "key": "setting.git_savvy.log_graph_view", "operator": "equal", "operand": true }
+        ]
+    },
+
     //////////////////
     // STAGE_DIFF VIEW //
     //////////////////
@@ -71,6 +172,15 @@
     {
         "keys": ["ctrl+enter"],
         "command": "gs_stage_diff_apply",
+        "context": [
+            { "key": "setting.command_mode", "operator": "equal", "operand": false },
+            { "key": "setting.git_savvy.git_stage_diff_view", "operator": "equal", "operand": true }
+        ]
+    },
+
+    {
+        "keys": ["backspace"],
+        "command": "close",
         "context": [
             { "key": "setting.command_mode", "operator": "equal", "operand": false },
             { "key": "setting.git_savvy.git_stage_diff_view", "operator": "equal", "operand": true }
@@ -99,6 +209,15 @@
         ]
     },
 
+    {
+        "keys": ["backspace"],
+        "command": "close",
+        "context": [
+            { "key": "setting.command_mode", "operator": "equal", "operand": false },
+            { "key": "setting.git_savvy.help_view", "operator": "equal", "operand": true },
+        ]
+    },
+
     //////////////////////
     // INLINE DIFF VIEW //
     //////////////////////
@@ -106,6 +225,29 @@
     {
         "keys": ["ctrl+z"],
         "command": "gs_inline_diff_undo",
+        "context": [
+            { "key": "setting.command_mode", "operator": "equal", "operand": false },
+            { "key": "setting.git_savvy.inline_diff_view", "operator": "equal", "operand": true }
+        ]
+    },
+
+    {
+        "keys": ["backspace"],
+        "command": "close",
+        "context": [
+            { "key": "setting.command_mode", "operator": "equal", "operand": false },
+            { "key": "setting.git_savvy.inline_diff_view", "operator": "equal", "operand": true }
+        ]
+    },
+ 
+    {
+        "keys": ["e"],
+        "command": "gs_custom",
+        "args": {
+            "output_to_panel": false,
+            "args": ["difftool", "-y", "{FILE_PATH}"],
+            "start_msg": "Starting external diff tool..."
+        },
         "context": [
             { "key": "setting.command_mode", "operator": "equal", "operand": false },
             { "key": "setting.git_savvy.inline_diff_view", "operator": "equal", "operand": true }
@@ -143,6 +285,41 @@
         "context": [
             { "key": "setting.command_mode", "operator": "equal", "operand": false },
             { "key": "setting.git_savvy.rebase_view", "operator": "equal", "operand": true }
+        ]
+    },
+
+    {
+        "keys": ["backspace"],
+        "command": "close",
+        "context": [
+            { "key": "setting.command_mode", "operator": "equal", "operand": false },
+            { "key": "setting.git_savvy.rebase_view", "operator": "equal", "operand": true }
+        ]
+    },
+
+    //////////////////////
+    // REBASE DASHBOARD //
+    //////////////////////
+
+    {
+        "keys": ["backspace"],
+        "command": "close",
+        "context": [
+            { "key": "setting.command_mode", "operator": "equal", "operand": false },
+            { "key": "setting.git_savvy.rebase_view", "operator": "equal", "operand": true },
+        ]
+    },
+
+    /////////////////////////
+    // COMPARE COMMIT VIEW //
+    /////////////////////////
+
+    {
+        "keys": ["backspace"],
+        "command": "close",
+        "context": [
+            { "key": "setting.command_mode", "operator": "equal", "operand": false },
+            { "key": "setting.git_savvy.compare_commit_view", "operator": "equal", "operand": true }
         ]
     },
 
