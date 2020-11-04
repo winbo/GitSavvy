@@ -57,7 +57,7 @@ class BranchInterface(ui.Interface, GitCommand):
       [d] delete                                    [h] fetch remote branches
       [D] delete (force)                            [m] merge selected into active branch
       [R] rename (local)                            [M] fetch and merge into active branch
-      [t] configure tracking
+      [t] configure tracking                        [u] unset upstream
 
       [f] diff against active                       [l] show branch log
       [H] diff history against active               [g] show branch log graph
@@ -356,6 +356,29 @@ class GsBranchesConfigureTrackingCommand(TextCommand, GitCommand):
         self.git("branch", "-u", branch, self.local_branch)
         util.view.refresh_gitsavvy(self.view)
 
+
+class GsBranchesUnsetUpstreamCommand(TextCommand, GitCommand):
+
+    """
+    Unset branch's upstream
+    """
+
+    def run(self, edit, force=False):
+        self.force = force
+        sublime.set_timeout_async(self.run_async, 0)
+
+    def run_async(self):
+        window = self.view.window()
+        if not window:
+            return
+
+        interface = ui.get_interface(self.view.id())
+        remote_name, branch_name = interface.get_selected_branch()
+        if not branch_name:
+            return
+
+        self.git("branch", "--unset-upstream", branch_name)
+        util.view.refresh_gitsavvy(self.view)
 
 class GsBranchesPushSelectedCommand(TextCommand, GitCommand):
 
