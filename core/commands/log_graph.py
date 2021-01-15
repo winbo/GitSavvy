@@ -903,7 +903,7 @@ class gs_log_graph_current_branch(WindowCommand, GitCommand):
     def run(self, file_path=None):
         self.window.run_command('gs_graph', {
             'file_path': file_path,
-            'all': True,
+            'all': False,
             'follow': 'HEAD',
         })
 
@@ -946,11 +946,17 @@ class gs_log_graph_by_author(WindowCommand, GitCommand):
             )
 
         email = self.git("config", "user.email").strip()
+        
+        try:
+            index = [line[2] for line in entries].index(email)
+        except:
+            index = 0
+
         self.window.show_quick_panel(
             [entry[3] for entry in entries],
             on_select,
             flags=sublime.MONOSPACE_FONT,
-            selected_index=[line[2] for line in entries].index(email)
+            selected_index=index
         )
 
 
@@ -963,7 +969,7 @@ class gs_log_graph_by_branch(WindowCommand, GitCommand):
                 self._selected_branch = branch  # remember last selection
                 self.window.run_command('gs_graph', {
                     'file_path': file_path,
-                    'all': True,
+                    'all': False,
                     'branches': [branch],
                     'follow': branch,
                 })
